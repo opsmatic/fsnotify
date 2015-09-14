@@ -58,6 +58,11 @@ func (e *FileEvent) IsAttrib() bool {
 	return (e.mask & sys_NOTE_ATTRIB) == sys_NOTE_ATTRIB
 }
 
+// IsCloseWrite is only used for Linux
+func (e *FileEvent) IsCloseWrite() bool {
+	return false
+}
+
 type Watcher struct {
 	mu              sync.Mutex          // Mutex for the Watcher itself.
 	kq              int                 // File descriptor (as returned by the kqueue() syscall)
